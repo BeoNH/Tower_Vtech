@@ -6,6 +6,7 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
 import Tower from "./Tower";
+import gameControl from "./gameControl";
 
 const {ccclass, property} = cc._decorator;
 
@@ -35,6 +36,9 @@ export default class Enemy extends cc.Component {
       this.node.getChildByName("HPBar").getChildByName("HP").getComponent(cc.Sprite).fillRange = this.hp/this.maxHP;
       if(this.hp <=0){
         this.onDestroyEnemy();
+        gameControl.Ins.wood += 5;
+        let wood = cc.find("Canvas/fwood-sheet0/woodText").getComponent(cc.RichText);
+        wood.string = "<color=#0>" + gameControl.Ins.wood.toString() +"</C>";
       }
       this.schedule(()=> {this.node.children[0].active = false;},5)
     }

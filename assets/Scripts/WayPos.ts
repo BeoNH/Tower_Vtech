@@ -17,13 +17,13 @@ export default class WayPos extends cc.Component {
 
   protected WayCount: number = 0;
 
-  protected timeBetweenWaves: number = 20;
-  protected numberOfEnemy: number = 3;
+  protected timeBetweenWaves: number = 30;
+  protected numberOfEnemy: number = 10;
   protected countDown: number = 2;
 
   protected start(): void {
     let waveMax = cc.find("Canvas/fwave-sheet0/wave").getComponent(cc.RichText);
-    waveMax.string = "/" + this.wave.toString();
+    waveMax.string = "<color=#0>/" + this.wave.toString() + "</c>";
   }
 
   update(dt) {
@@ -42,7 +42,7 @@ export default class WayPos extends cc.Component {
       this.wave--;
       this.WayCount++;
       let waveCout = cc.find("Canvas/fwave-sheet0/waveText").getComponent(cc.RichText);
-      waveCout.string = this.WayCount.toString();
+      waveCout.string = "<color=#0>" + this.WayCount.toString() + "</c>";
     }else{
         //console.log("het wave")
         return;
@@ -54,7 +54,9 @@ export default class WayPos extends cc.Component {
       let newEnemy = cc.instantiate(this.enemy);
       cc.Canvas.instance.node.addChild(newEnemy);
 
-      newEnemy.setPosition(this.node.children[0].position);
+
+      let randY= Math.random() * 6 + this.node.children[0].position.y -3
+      newEnemy.setPosition(this.node.children[0].position.x, randY);
       //console.log(newEnemy.position, i);
     }
   }

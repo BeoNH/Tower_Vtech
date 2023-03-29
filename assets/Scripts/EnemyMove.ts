@@ -44,12 +44,15 @@ export default class EnemyMove extends cc.Component {
           this.node.destroy();
           let myLife = cc.find("Canvas/flife-sheet0/headText").getComponent(cc.RichText);
           gameControl.Ins.heart -= 1;
-          myLife.string = gameControl.Ins.heart.toString();
+          myLife.string = "<color=#0>" + gameControl.Ins.heart.toString() +"</c>";
+          if(gameControl.Ins.heart == 0){
+            cc.director.loadScene("Level_1");
+          }
           return;
         }
         //neu chua di qua diem cuoi tiep tuc di chuyen
         let speedMove = this.tagetMove.clone().sub(this.node.position).mag() / this.speed;
-        let rand = Math.random() * 2 + speedMove -1;
+        let rand = Math.random() * 4 + speedMove -1;
         //console.log(speedMove);
         cc.tween(this.node)
           .to(rand, { position: this.tagetMove.clone() })

@@ -31,15 +31,6 @@ export default class Tower extends cc.Component {
   public numberOfBullet: number = 2; //so luong ban trong
   private fireCountDown: number = 0; 
 
-  // undateTarget(): void {
-  //   let targetIndex = 0;
-  //   if (!this.targetAray[targetIndex]) {
-  //     targetIndex = 0;
-  //   }
-  //   this.taget = this.targetAray[targetIndex];
-  //   targetIndex++;
-  // }
-
   onLoad() {
     Tower.Ins = this;
   }
@@ -78,6 +69,12 @@ export default class Tower extends cc.Component {
 
         this.numberOfBullet--;
       }
+    }
+  }
+
+  isSlow(): void{
+    if(this.bullet.name == "bullet2-sheet0"){
+      
     }
   }
 }

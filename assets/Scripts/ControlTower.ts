@@ -46,7 +46,7 @@ export default class NewClass extends cc.Component {
         let money = this.node.children[0].children[0].children[1].children[0].getComponent(cc.RichText);
         gameControl.Ins.wood += parseInt(money.string);
         let wood = cc.find("Canvas/fwood-sheet0/woodText").getComponent(cc.RichText);
-        wood.string = gameControl.Ins.wood.toString();
+        wood.string = "<color=#0>" + gameControl.Ins.wood.toString() +"</C>";
 
         this.node.active = false;
 

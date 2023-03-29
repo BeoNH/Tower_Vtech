@@ -5,6 +5,7 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import timeBar from "./TimeBar";
 import gameControl from "./gameControl";
 
 const {ccclass, property} = cc._decorator;
@@ -35,24 +36,23 @@ export default class Flag extends cc.Component {
   }
 
   chooseTower(towerIndex: number) {
-    const newTower = cc.instantiate(this.tower[towerIndex - 1]);
-    newTower.setPosition(this.node.position);
-    cc.Canvas.instance.node.addChild(newTower);
-  
-    let money = cc.find(`Canvas/flag/selectionCircle/btnTower${towerIndex}/buyBar/buyWood`).getComponent(cc.RichText);
-    gameControl.Ins.wood -= parseInt(money.string);
-    let wood = cc.find("Canvas/fwood-sheet0/woodText").getComponent(cc.RichText);
-    wood.string = gameControl.Ins.wood.toString();
-    
     this.node.active = false;
-  
-    console.log(`Tower${towerIndex}`);
-  }
-
-  switchBuild(): void{
     const newBuld = cc.instantiate(this.build);
     newBuld.setPosition(this.node.position);
     cc.Canvas.instance.node.addChild(newBuld);
+
+    setTimeout(() => {
+        const newTower = cc.instantiate(this.tower[towerIndex - 1]);
+        newTower.setPosition(this.node.position);
+        cc.Canvas.instance.node.addChild(newTower);
+    }, 6350);
+
+    let money = cc.find(`Canvas/flag/selectionCircle/btnTower${towerIndex}/buyBar/buyWood`).getComponent(cc.RichText);
+    gameControl.Ins.wood -= parseInt(money.string);
+    let wood = cc.find("Canvas/fwood-sheet0/woodText").getComponent(cc.RichText);
+    wood.string = "<color=#0>" + gameControl.Ins.wood.toString() +"</c>";
+    
+    console.log(`Tower${towerIndex}`);
   }
 
   Tower1(): void {
