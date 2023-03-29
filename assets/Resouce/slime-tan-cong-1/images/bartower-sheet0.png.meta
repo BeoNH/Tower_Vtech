@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "e1d9758d-75dc-49a8-8ead-e0e33e633d8c",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 38,
+  "height": 7,
+  "platformSettings": {},
+  "subMetas": {
+    "bartower-sheet0": {
+      "ver": "1.0.6",
+      "uuid": "3d50882f-ae1a-4e38-a363-12cb4a67639a",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "e1d9758d-75dc-49a8-8ead-e0e33e633d8c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 38,
+      "height": 7,
+      "rawWidth": 38,
+      "rawHeight": 7,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

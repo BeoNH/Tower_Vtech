@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "976c359a-ae7b-4ba6-b545-394b533a9ce1",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 55,
+  "height": 43,
+  "platformSettings": {},
+  "subMetas": {
+    "btnspawnenemy-sheet0": {
+      "ver": "1.0.6",
+      "uuid": "989f127b-6617-4bae-9a9a-b6cbb662f615",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "976c359a-ae7b-4ba6-b545-394b533a9ce1",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 55,
+      "height": 43,
+      "rawWidth": 55,
+      "rawHeight": 43,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

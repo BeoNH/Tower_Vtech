@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "f553c3f4-4aa8-447b-8d5c-30669ad64f8c",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 58,
+  "height": 59,
+  "platformSettings": {},
+  "subMetas": {
+    "btnshopcoin-sheet0": {
+      "ver": "1.0.6",
+      "uuid": "35896ac6-d2b7-43d1-b432-29a2ae1379c3",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "f553c3f4-4aa8-447b-8d5c-30669ad64f8c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -0.5,
+      "trimX": 0,
+      "trimY": 1,
+      "width": 58,
+      "height": 58,
+      "rawWidth": 58,
+      "rawHeight": 59,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

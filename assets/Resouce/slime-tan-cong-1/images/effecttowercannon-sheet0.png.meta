@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "96821f4f-2957-493b-a3ef-2033b595746a",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 256,
+  "height": 256,
+  "platformSettings": {},
+  "subMetas": {
+    "effecttowercannon-sheet0": {
+      "ver": "1.0.6",
+      "uuid": "7cde991d-23a8-4c96-8a53-d1700ebf54f1",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "96821f4f-2957-493b-a3ef-2033b595746a",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -3.5,
+      "offsetY": 30,
+      "trimX": 6,
+      "trimY": 22,
+      "width": 237,
+      "height": 152,
+      "rawWidth": 256,
+      "rawHeight": 256,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
