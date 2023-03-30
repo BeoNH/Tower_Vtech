@@ -71,10 +71,4 @@ export default class Tower extends cc.Component {
       }
     }
   }
-
-  isSlow(): void{
-    if(this.bullet.name == "bullet2-sheet0"){
-      
-    }
-  }
 }

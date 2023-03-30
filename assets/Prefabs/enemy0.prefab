@@ -377,7 +377,6 @@
       "__id__": 1
     },
     "_enabled": true,
-    "speed": 40,
     "_id": ""
   },
   {
@@ -388,6 +387,8 @@
       "__id__": 1
     },
     "_enabled": true,
+    "maxHP": 100,
+    "speed": 40,
     "_id": ""
   },
   {

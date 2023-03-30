@@ -38,7 +38,7 @@ export default class WayPos extends cc.Component {
   waySpawn(): void {
     if (this.wave > 0) {
       this.Spanwer();
-      this.numberOfEnemy++;
+      this.numberOfEnemy+=5;
       this.wave--;
       this.WayCount++;
       let waveCout = cc.find("Canvas/fwave-sheet0/waveText").getComponent(cc.RichText);

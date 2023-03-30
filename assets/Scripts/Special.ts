@@ -5,8 +5,9 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import Enemy from "./Enemy";
 import specialBar from "./SpecilBar";
-import timeBar from "./TimeBar";
+import targetFire from "./tagetFire";
 
 const {ccclass, property} = cc._decorator;
 
@@ -34,8 +35,8 @@ export default class Special extends cc.Component {
     getFireSpecial():void{
         //Lay vi tri cua chuot va tha min
         
-        this.node.on(cc.Node.EventType.MOUSE_DOWN, this.onMouseDown, this)
-        cc.Canvas.instance.node.on(cc.Node.EventType.MOUSE_UP, this.onMouseUp, this)
+        this.node.on(cc.Node.EventType.TOUCH_START, this.onTouchStart, this)
+        cc.Canvas.instance.node.on(cc.Node.EventType.TOUCH_END, this.onTouchEnd, this)
     }
 
     onMouseMove(event: cc.Event.EventMouse) {
@@ -44,10 +45,14 @@ export default class Special extends cc.Component {
         this.targetFire.setPosition(pos);
       }
       
-      onMouseUp(event: cc.Event.EventMouse) {
+      onTouchEnd(event: cc.Event.EventMouse) {
         cc.Canvas.instance.node.off(cc.Node.EventType.MOUSE_MOVE, this.onMouseMove, this);
 
         if(this.targetFire.active == true){
+
+            console.log(targetFire.Ins.enemyAray,"aaaaaa");
+            let dameAray = targetFire.Ins.enemyAray;
+
             for (let index = 0; index < 5; index++) {
                 setTimeout(() => {
                     let newBoom = cc.instantiate(this.special);
@@ -62,10 +67,12 @@ export default class Special extends cc.Component {
                     cc.tween(newBoom)
                     .to(0.25, {position: cc.v3(randX, randY)})
                     .call(() => {
+                        this.ani.stop();
                         this.ani.play("boomsDone");
                     })
                     .call(() => {
                         newBoom.destroy();
+                        this.dameAllEnemy(dameAray);
                     })
                     .start();
                 }, index * 400);
@@ -73,15 +80,26 @@ export default class Special extends cc.Component {
         }
         //tha booms
 
+        
+        this.targetFire.active = false;
+      }
+
+      dameAllEnemy(dame: cc.Node[]): void{
+        const listTarget = dame.slice(); 
+        if(!listTarget) return;
+        for (const target of listTarget) {
+            if (!target || target.name == "") return;
+            target.getComponent(Enemy).takeDame(30);
+            target.getComponent(Enemy).isTower = false;
+        };
+      }
+
+      onTouchStart(event: cc.Event.EventMouse) {
+          this.targetFire.setPosition(this.node.parent.parent.position);
+          this.targetFire.active = true;
+
         specialBar.Ins.reset();
         specialBar.Ins.start();
-        this.targetFire.active = false;
-        console.log(this.node.getComponent(cc.Button).enabled, this.node.getComponent(Special).enabled)
-      }
-      
-      onMouseDown(event: cc.Event.EventMouse) {
-        this.targetFire.active = true;
-        this.targetFire.setPosition(this.node.position);
 
         cc.Canvas.instance.node.on(cc.Node.EventType.MOUSE_MOVE, this.onMouseMove, this);
       }

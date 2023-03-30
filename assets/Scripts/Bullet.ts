@@ -65,10 +65,15 @@ export default class Bullet extends cc.Component {
         let a = dame.getComponent(Enemy);
         if(a != null)
         {
-            a.takeDame();
-            
+            a.takeDame(this.parentTower.dameTower);
+            a.isTower = true;
+            if(this.node.name == "bullet2-sheet0"){
+                a.isSlow();
+            }
+            else if(this.node.name == "bullet3-sheet0")
+            {
+                a.isPoison();
+            }
         }
     }
-
-
 }

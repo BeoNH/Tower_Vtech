@@ -32,7 +32,11 @@ export default class Flag extends cc.Component {
   onTouchStart(event: cc.Event.EventTouch): void {}
 
   onTouchEnd(event: cc.Event.EventTouch): void {
-    this.node.children[0].active = true;
+    if(this.node.children[0].active == false){
+      this.node.children[0].active = true;
+    }else{
+      this.node.children[0].active = false;
+    }
   }
 
   chooseTower(towerIndex: number) {

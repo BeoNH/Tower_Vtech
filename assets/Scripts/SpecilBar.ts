@@ -25,8 +25,7 @@ export default class specialBar extends cc.Component {
     reset(): void{
         this.timeCout = this.startTimeCout;
         this.currentFillRange = 0;
-        this.node.parent.getComponent(cc.Button).enabled = false;
-        this.node.parent.getComponent(Special).enabled = false;
+        this.node.children[0].active = false;
     }
 
     updateFillRange() {
@@ -37,9 +36,7 @@ export default class specialBar extends cc.Component {
         } else {
             // dừng tăng dần fillRange nếu đã đạt giá trị tối đa
             this.unschedule(this.updateFillRange.bind(this));    
-            this.node.parent.getComponent(cc.Button).enabled = true;
-            this.node.parent.getComponent(Special).enabled = true;
-            // hoi chieu cuoi
+            this.node.children[0].active =  true;
         }
     }
 
