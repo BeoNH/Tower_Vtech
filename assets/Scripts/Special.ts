@@ -7,6 +7,7 @@
 
 import Enemy from "./Enemy";
 import specialBar from "./SpecilBar";
+import gameManager from "./gameManager";
 import targetFire from "./tagetFire";
 
 const {ccclass, property} = cc._decorator;
@@ -75,7 +76,7 @@ export default class Special extends cc.Component {
                         this.dameAllEnemy(dameAray);
                     })
                     .start();
-                }, index * 400);
+                }, index * 400 / gameManager.timeScale);
             }
         }
         //tha booms

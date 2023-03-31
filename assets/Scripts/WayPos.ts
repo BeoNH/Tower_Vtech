@@ -5,6 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import gameManager from "./gameManager";
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -17,7 +19,7 @@ export default class WayPos extends cc.Component {
 
   protected WayCount: number = 0;
 
-  protected timeBetweenWaves: number = 30;
+  protected timeBetweenWaves: number = 35;
   protected numberOfEnemy: number = 10;
   protected countDown: number = 2;
 
@@ -29,7 +31,7 @@ export default class WayPos extends cc.Component {
   update(dt) {
     if (this.countDown <= 0) {
       this.waySpawn();
-      this.countDown = this.timeBetweenWaves;
+      this.countDown = this.timeBetweenWaves/gameManager.timeScale;
       //console.log(this.numberOfEnemy);
     }
     this.countDown -= dt;
@@ -51,13 +53,16 @@ export default class WayPos extends cc.Component {
 
   Spanwer(): void {
     for (let i = 0; i < this.numberOfEnemy; i++) {
-      let newEnemy = cc.instantiate(this.enemy);
-      cc.Canvas.instance.node.addChild(newEnemy);
-
-
-      let randY= Math.random() * 6 + this.node.children[0].position.y -3
-      newEnemy.setPosition(this.node.children[0].position.x, randY);
-      //console.log(newEnemy.position, i);
+      let rand = (Math.random() * 5 + 5)*100;
+      setInterval
+      setTimeout(() => {
+        let newEnemy = cc.instantiate(this.enemy);
+        cc.Canvas.instance.node.addChild(newEnemy);
+  
+  
+        let randY= Math.random() * 6 + this.node.children[0].position.y -3
+        newEnemy.setPosition(this.node.children[0].position.x, randY);
+      }, i * rand / gameManager.timeScale);
     }
   }
 }

@@ -8,6 +8,7 @@
 import Enemy from "./Enemy";
 import WayPos from "./WayPos";
 import gameControl from "./gameControl";
+import gameManager from "./gameManager";
 
 const {ccclass, property} = cc._decorator;
 
@@ -29,8 +30,10 @@ export default class EnemyMove extends cc.Component {
     this.enemy = this.getComponent(Enemy);
 
     this.movePos(); //Lay vi tri ca diem can di qua
-    this.moveToNextPoint(); //Di chuyen den diem tiep theo
+  }
 
+  update(dt: number): void {
+    this.move();
   }
 
   movePos(): void{
@@ -43,31 +46,32 @@ export default class EnemyMove extends cc.Component {
 
   moveToNextPoint() {
         // kiem tra di qua diem cuoi chua
-        if (this.tagetCount >= this.wayPoss.length) {
+        if (this.tagetCount >= this.wayPoss.length -1) {
           this.node.destroy();
           let myLife = cc.find("Canvas/flife-sheet0/headText").getComponent(cc.RichText);
           gameControl.Ins.heart -= 1;
           myLife.string = "<color=#0>" + gameControl.Ins.heart.toString() +"</c>";
           if(gameControl.Ins.heart == 0){
-            cc.director.loadScene("Level_1");
+            gameManager.onRestart();
           }
           return;
         }
-        //neu chua di qua diem cuoi tiep tuc di chuyen
-        let speedMove = this.tagetMove.clone().sub(this.node.position).mag() / this.enemy.speed;
-        let rand = Math.random() * 4 + speedMove -3;
-        this.schedule(() => {
-          //console.log(rand)
-        },0.5);
-        //console.log(speedMove);
-        cc.tween(this.node)
-          .to(rand, { position: this.tagetMove.clone() })
-          .call(() => {
-            this.tagetCount++;
-            this.tagetMove = this.wayPoss[this.tagetCount];
-            this.moveToNextPoint();
-          })
-          .start();
+        
+        this.tagetCount++;
+        this.tagetMove = this.wayPoss[this.tagetCount];
+  }
+
+  move(): void{
+    let speedMove = this.node.position.sub(this.tagetMove).mag() / this.enemy.speed;
+    cc.tween(this.node)
+      .to(speedMove, { position: this.tagetMove.clone()})
+      .call(() => {})
+      .start();
+
+    if(this.tagetMove.clone().sub(this.node.position).mag() <= 0.1){
+      this.moveToNextPoint();
     }
+  }
+
 
 }

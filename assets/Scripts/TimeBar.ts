@@ -9,15 +9,21 @@ export default class timeBar extends cc.Component {
     @property(cc.Integer)
     timeCout: number = 5;
 
+    public startTime: number;
+
     public currentFillRange: number = 0; // giá trị fillRange hiện tại
 
     onLoad() {
+        this.startTime = this.timeCout;
         this.timeCout = this.timeCout/100;
     }
 
     start() {
         // bắt đầu tăng dần fillRange
         this.schedule(this.updateFillRange.bind(this), this.timeCout);
+    }
+
+    update(dt):void{
     }
 
     updateFillRange() {

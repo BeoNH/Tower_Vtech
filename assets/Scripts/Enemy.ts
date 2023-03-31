@@ -70,15 +70,14 @@ export default class Enemy extends cc.Component {
 
     isSlow(): void{
       this.speed *= 0.5;
-      this.node.getComponent(EnemyMove).moveToNextPoint();
-      this.scheduleOnce(() => {this.speed = this.startSpeed; console.log("Run")},2);
+      this.scheduleOnce(() => {this.speed = this.startSpeed},1);
       console.log("Slowwwwwww");
     }
 
     isPoison(): void{
-      this.scheduleOnce(() => {this.hp -=5},1);
-      this.scheduleOnce(() => {this.hp -=5},2);
-      this.scheduleOnce(() => {this.hp -=5},3);
+      this.scheduleOnce(() => {this.hp -=10},1);
+      this.scheduleOnce(() => {this.hp -=10},2);
+      this.scheduleOnce(() => {this.hp -=10},3);
       console.log("doc nay");
     }
 }

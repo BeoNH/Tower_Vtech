@@ -7,6 +7,7 @@
 
 import timeBar from "./TimeBar";
 import gameControl from "./gameControl";
+import gameManager from "./gameManager";
 
 const {ccclass, property} = cc._decorator;
 
@@ -45,11 +46,13 @@ export default class Flag extends cc.Component {
     newBuld.setPosition(this.node.position);
     cc.Canvas.instance.node.addChild(newBuld);
 
+    const totalTime = (newBuld.children[0].children[0].getComponent(timeBar).startTime + 1.2 * gameManager.timeScale) / gameManager.timeScale;
+
     setTimeout(() => {
         const newTower = cc.instantiate(this.tower[towerIndex - 1]);
         newTower.setPosition(this.node.position);
         cc.Canvas.instance.node.addChild(newTower);
-    }, 6350);
+    }, totalTime *1000);
 
     let money = cc.find(`Canvas/flag/selectionCircle/btnTower${towerIndex}/buyBar/buyWood`).getComponent(cc.RichText);
     gameControl.Ins.wood -= parseInt(money.string);

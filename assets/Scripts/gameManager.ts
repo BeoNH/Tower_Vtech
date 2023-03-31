@@ -8,16 +8,12 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
-
+export default class gameManager extends cc.Component {
     private count: number = 0;
 
+    public static timeScale: number = 1;
+
     // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {}
-
-    start () {
-    }
 
     // update (dt) {}
 
@@ -31,10 +27,13 @@ export default class NewClass extends cc.Component {
         cc.find("Canvas/foption-sheet0").active = false;
     }
 
-    onRestart(): void{
-        const sceneName = cc.director.getScene().name;
-        cc.director.loadScene(sceneName)
-        cc.director.resume()
+    public static onRestart(): void{
+        const sceneName = cc.director.getScene();
+        sceneName.stopAllActions()
+        cc.director.resume();
+        cc.director.getScheduler().setTimeScale(1);
+        gameManager.timeScale = 1;
+        cc.director.loadScene(sceneName.name);
     }
 
     onGoHome(): void {
@@ -64,8 +63,10 @@ export default class NewClass extends cc.Component {
                     buttonClick.pressedSprite = saveSprite;
                 if (this.count % 2) {
                     cc.director.getScheduler().setTimeScale(3);
+                    gameManager.timeScale = 3;
                 } else {
                     cc.director.getScheduler().setTimeScale(1);
+                    gameManager.timeScale = 1;
                 }
             }
         }
