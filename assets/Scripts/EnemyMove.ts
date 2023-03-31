@@ -52,7 +52,7 @@ export default class EnemyMove extends cc.Component {
           gameControl.Ins.heart -= 1;
           myLife.string = "<color=#0>" + gameControl.Ins.heart.toString() +"</c>";
           if(gameControl.Ins.heart == 0){
-            gameManager.onRestart();
+            gameManager.Ins.onRestart();
           }
           return;
         }

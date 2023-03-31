@@ -75,9 +75,13 @@ export default class Enemy extends cc.Component {
     }
 
     isPoison(): void{
-      this.scheduleOnce(() => {this.hp -=10},1);
-      this.scheduleOnce(() => {this.hp -=10},2);
-      this.scheduleOnce(() => {this.hp -=10},3);
-      console.log("doc nay");
+      for (let i = 1; i < 4; i++) {
+        this.scheduleOnce(()=> {
+          if(this.node.isValid){
+            this.hp -=10;
+            console.log("doc nay", i);
+          }
+        },i)      
+      }
     }
 }

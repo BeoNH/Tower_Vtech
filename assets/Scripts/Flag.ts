@@ -41,25 +41,31 @@ export default class Flag extends cc.Component {
   }
 
   chooseTower(towerIndex: number) {
-    this.node.active = false;
-    const newBuld = cc.instantiate(this.build);
-    newBuld.setPosition(this.node.position);
-    cc.Canvas.instance.node.addChild(newBuld);
-
-    const totalTime = (newBuld.children[0].children[0].getComponent(timeBar).startTime + 1.2 * gameManager.timeScale) / gameManager.timeScale;
-
-    setTimeout(() => {
-        const newTower = cc.instantiate(this.tower[towerIndex - 1]);
-        newTower.setPosition(this.node.position);
-        cc.Canvas.instance.node.addChild(newTower);
-    }, totalTime *1000);
-
     let money = cc.find(`Canvas/flag/selectionCircle/btnTower${towerIndex}/buyBar/buyWood`).getComponent(cc.RichText);
-    gameControl.Ins.wood -= parseInt(money.string);
-    let wood = cc.find("Canvas/fwood-sheet0/woodText").getComponent(cc.RichText);
-    wood.string = "<color=#0>" + gameControl.Ins.wood.toString() +"</c>";
-    
-    console.log(`Tower${towerIndex}`);
+
+    if(gameControl.Ins.wood == 0 || gameControl.Ins.wood < parseInt(money.string)){
+      console.log("Khong du tien mua Tower");
+      return;
+    }else{
+      this.node.active = false;
+      const newBuld = cc.instantiate(this.build);
+      newBuld.setPosition(this.node.position);
+      cc.Canvas.instance.node.addChild(newBuld);
+  
+      const totalTime = (newBuld.children[0].children[0].getComponent(timeBar).startTime + 1.2 * gameManager.timeScale) / gameManager.timeScale;
+  
+      setTimeout(() => {
+          const newTower = cc.instantiate(this.tower[towerIndex - 1]);
+          newTower.setPosition(this.node.position);
+          cc.Canvas.instance.node.addChild(newTower);
+      }, totalTime *1000);
+  
+      gameControl.Ins.wood -= parseInt(money.string);
+      let wood = cc.find("Canvas/fwood-sheet0/woodText").getComponent(cc.RichText);
+      wood.string = "<color=#0>" + gameControl.Ins.wood.toString() +"</c>";
+      
+      console.log(`Tower${towerIndex}`);
+    }   
   }
 
   Tower1(): void {

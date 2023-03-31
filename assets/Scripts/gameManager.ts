@@ -9,11 +9,16 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class gameManager extends cc.Component {
+    public static Ins: gameManager;
+
     private count: number = 0;
 
     public static timeScale: number = 1;
 
     // LIFE-CYCLE CALLBACKS:
+    onLoad(): void{
+        gameManager.Ins = this
+    }
 
     // update (dt) {}
 
@@ -27,7 +32,7 @@ export default class gameManager extends cc.Component {
         cc.find("Canvas/foption-sheet0").active = false;
     }
 
-    public static onRestart(): void{
+    onRestart(): void{
         const sceneName = cc.director.getScene();
         sceneName.stopAllActions()
         cc.director.resume();

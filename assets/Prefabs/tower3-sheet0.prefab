@@ -1060,7 +1060,7 @@
       "__uuid__": "9354c617-673b-4e31-804c-1ec747a4d80f"
     },
     "range": 3,
-    "speedShoot": 2,
+    "speedShoot": 1,
     "dameTower": 20,
     "_id": ""
   },

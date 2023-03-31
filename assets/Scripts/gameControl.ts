@@ -11,11 +11,16 @@ const {ccclass, property} = cc._decorator;
 export default class gameControl extends cc.Component {
   public static Ins: gameControl;
 
-  public heart: number = 10;
+  @property
   public wood: number = 300;
+  
+  public heart: number = 10;
   
   private collisionManager: cc.CollisionManager;
   onLoad() {
+    let wood = cc.find("Canvas/fwood-sheet0/woodText").getComponent(cc.RichText);
+    wood.string =  "<color=#0>" + this.wood.toString() + "</c>";
+
     gameControl.Ins = this;
 
     this.collisionManager = cc.director.getCollisionManager();

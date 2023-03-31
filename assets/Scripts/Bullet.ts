@@ -58,7 +58,6 @@ export default class Bullet extends cc.Component {
         }else{
             this.hitTarget(this.target);
         }
-
     }
 
     hitTarget(dame: cc.Node): void{

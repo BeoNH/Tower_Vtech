@@ -21,7 +21,7 @@ export default class WayPos extends cc.Component {
 
   protected timeBetweenWaves: number = 35;
   protected numberOfEnemy: number = 10;
-  protected countDown: number = 2;
+  protected countDown: number = 8;
 
   protected start(): void {
     let waveMax = cc.find("Canvas/fwave-sheet0/wave").getComponent(cc.RichText);
@@ -31,7 +31,7 @@ export default class WayPos extends cc.Component {
   update(dt) {
     if (this.countDown <= 0) {
       this.waySpawn();
-      this.countDown = this.timeBetweenWaves/gameManager.timeScale;
+      this.countDown = this.timeBetweenWaves;
       //console.log(this.numberOfEnemy);
     }
     this.countDown -= dt;
@@ -54,12 +54,10 @@ export default class WayPos extends cc.Component {
   Spanwer(): void {
     for (let i = 0; i < this.numberOfEnemy; i++) {
       let rand = (Math.random() * 5 + 5)*100;
-      setInterval
       setTimeout(() => {
         let newEnemy = cc.instantiate(this.enemy);
         cc.Canvas.instance.node.addChild(newEnemy);
-  
-  
+
         let randY= Math.random() * 6 + this.node.children[0].position.y -3
         newEnemy.setPosition(this.node.children[0].position.x, randY);
       }, i * rand / gameManager.timeScale);
